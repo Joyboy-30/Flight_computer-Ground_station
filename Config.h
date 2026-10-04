@@ -48,20 +48,3 @@
 
 // IDs
 #define ROCKET_ID              37     // Standard test ID
-
-// --- Backup / Redundant Ejection Detector -----------------------------------
-// Independent second decision path ported from ejection_code.ino. Fires the
-// same relay as the primary state machine if the primary detector never
-// reaches STATE_APOGEE_LOCKED. See BackupEjection.h for the detection logic.
-// !! VERIFY BACKUP_RELAY_PIN AGAINST YOUR ACTUAL WIRING BEFORE FLYING !!
-// (GPIO4 matches the original ejection_code.ino relay pin; it also matches
-// this file's PIN_BUZZER above, which is currently unused in rocket_flight.ino
-// -- if GPIO4 is genuinely your buzzer, change the value below instead.)
-#define BACKUP_RELAY_PIN         4
-#define BACKUP_SEA_LEVEL_HPA     1004.0f // same reference pressure as ejection_code.ino
-#define BACKUP_BASE_READS        2000    // calibration samples (spread non-blocking across loop())
-#define BACKUP_READS_PER_CYCLE   5       // averaged samples per evaluation (reduced from the
-                                          // original's 50 so the main 10Hz loop is never stalled)
-#define BACKUP_LAUNCH_ALT_M      5.0f    // meters above baseline => launch detected
-#define BACKUP_APOGEE_DROP_M     1.5f    // meters fallen from max => backup ejection trigger
-#define BACKUP_EEPROM_SIZE       512
